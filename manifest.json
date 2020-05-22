@@ -1,7 +1,7 @@
 {
   "name" : "Mis Notas",
   "short_name" : "Mis Notas",
-  "start_url" : "index.php",
+  "start_url" : "https://my-notes-now.herokuapp.com/",
   "display" : "standalone",
   "background-color" : "#000039",
   "theme_color" : "#1B4BB4",
