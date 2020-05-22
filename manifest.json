@@ -1,0 +1,16 @@
+{
+  "name" : "Mis Notas",
+  "short_name" : "Mis Notas",
+  "start_url" : "index.html",
+  "display" : "standalone",
+  "background-color" : "#000039",
+  "theme_color" : "#1B4BB4",
+  "orientation" : "portrait",
+  "icons" : [
+    {
+      "src" : "img/app_icon.png",
+      "type" : "image/png",
+      "sizes" : "240x240"
+    }
+  ]
+}

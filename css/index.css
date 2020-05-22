@@ -1,0 +1,135 @@
+.unic-bg{
+  background-image: linear-gradient(45deg, #000039, #1D52C0);
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 110%;
+}
+.unic-shadow{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0;
+  transition: all .5s;
+  visibility: hidden;
+  z-index: 1;
+}
+.unic-shadow-toggle{
+  opacity: .5;
+  visibility: visible;
+}
+
+.index-body{
+  height: 100%;
+  position: relative;
+  transition: all .5s;
+}
+.index-body-shadow{
+  overflow: hidden;
+}
+.index-body-trans{
+  overflow-y: hidden;
+  transform: scale(0.95);
+}
+
+.super-bar {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 0 8px 8px rgba(0, 0, 0, .4);
+  z-index: 1;
+}
+
+.topbar {
+  background-color: #1B4BB4;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-title {
+  text-align: center;
+  padding: 10px;
+}
+
+.main-opts {
+  display: flex;
+  padding: 5px;
+}
+
+.opt-item {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.opt-item:nth-child(2) {
+  margin-left: 5px;
+}
+
+.opt-icon {
+  width: 35px;
+  filter: invert(80%);
+}
+
+.headers {
+  display: flex;
+  align-items: center;
+  background-color: #14378E;
+}
+.div-header{
+  width: 4px;
+  height: 35px;
+  background-color: rgba(255,255,255,.1);
+  box-shadow: 0 0 4px rgba(0,0,0,.1);
+}
+.header-item {
+  font-size: 20px;
+  text-align: center;
+  width: 40%;
+  padding: 10px;
+}
+.header-item:nth-child(5){
+  width: 20%;
+}
+
+.notes-container {
+  padding-top: 110px;
+  position: relative;
+}
+.note-item {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  box-sizing: border-box;
+}
+.note-item-title {
+  font-size: 25px;
+}
+
+
+.floating-new-note {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+  border-color: #ddd;
+  background-color: rgba(11, 31, 107, .6);
+}
+.new-note-icon{
+  width: 30px;
+  filter: invert(70%);
+}
