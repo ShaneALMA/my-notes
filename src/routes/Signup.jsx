@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
-  const { loginUser } = useContext(UserContext)
+  const { signupUser } = useContext(UserContext)
   
   const navigate = useNavigate()
   
@@ -15,28 +15,28 @@ const Login = () => {
     e.preventDefault()
     
     try {
-      await loginUser(email, password)
-      console.log('usuario logueado')
-      navigate('/')
+      await signupUser(email, password);
+      console.log("Usuario creado");
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   
   return (
     <>
       <h1>
-        Login
+        Signup
       </h1>
       <form onSubmit={handleSubmit}>
         <input type="email" placeholder="ingrese email" value={email} onChange={e => setEmail(e.target.value)} />
         <input type="password" placeholder="ingrese contraseña" value={password} onChange={e => setPassword(e.target.value)} />
         <button type="submit">
-          INGRESAR
+          REGISTRAR
         </button>
       </form>
     </>
   )
 }
 
-export default Login
+export default Signup
