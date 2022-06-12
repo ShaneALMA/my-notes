@@ -1,25 +1,32 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form'
 
 const Signup = () => {
   
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  
   const { signupUser } = useContext(UserContext)
-  
   const navigate = useNavigate()
-  
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    
+  const { register, handleSubmit, formState: {errors}, getValues, setError } = useForm({
+    defaultValues: {
+      email: 'shane@test.com'
+    }
+  })
+  const onSubmit = async(data) => {
     try {
-      await signupUser(email, password);
+      await signupUser(data.email, data.password);
       console.log("Usuario creado");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          setError('email', {
+            message: 'usuario ya registrado'
+          })
+          break;
+        default:
+          console.log('ocurrió un error en el servidor')
+      }
     }
   }
   
@@ -28,9 +35,45 @@ const Signup = () => {
       <h1>
         Signup
       </h1>
-      <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="ingrese email" value={email} onChange={e => setEmail(e.target.value)} />
-        <input type="password" placeholder="ingrese contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="email" placeholder="ingrese email" {...register('email',{
+          required: {
+            value: true,
+            message: 'campo obligatorio'
+          },
+          pattern: {
+            value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,15}/,
+            message: 'formato email incorrecto'
+          }
+        })} />
+        {
+          errors.email && <p>{errors.email.message}</p>
+        }
+        <input type="password" placeholder="ingrese contraseña" {...register('password',{
+            minLength: {
+              value: 6,
+              message: 'mínimo 6 caracteres'
+            },
+            validate: {
+              trim: v => {
+                if(!v.trim())
+                  return 'no seas 🤡, escribe algo'
+                return true
+              }
+            }
+          })} 
+        />
+        {
+          errors.password && <p>{errors.password.message}</p>
+        }
+        <input type="password" placeholder="repetir contraseña" {...register('repassword', {
+          validate: {
+            equals: v => v === getValues('password') || 'las contraseñas no coinciden'
+          }
+        })} />
+        {
+          errors.repassword && <p>{errors.repassword.message}</p>
+        }
         <button type="submit">
           REGISTRAR
         </button>
